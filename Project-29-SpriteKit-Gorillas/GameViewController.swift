@@ -28,7 +28,7 @@ class GameViewController: UIViewController {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
+                scene.scaleMode = .fill
                 
                 // Present the scene
                 view.presentScene(scene)
@@ -43,8 +43,8 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
         }
         
-        angleChanged(angleSlider)
-        velocityChanged(velocitySlider)
+        angleChanged(self)
+        velocityChanged(self)
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
