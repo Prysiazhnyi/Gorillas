@@ -26,6 +26,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var currentPlayer = 1
     
+    var gameScorePlayerOne: SKLabelNode!
+    var scorePlayerOne = 0 {
+        didSet {
+            gameScorePlayerOne.text = "Score: \(scorePlayerOne)"
+        }
+    }
+    
+    var gameScorePlayerTwo: SKLabelNode!
+    var scorePlayerTwo = 0 {
+        didSet {
+            gameScorePlayerTwo.text = "Score: \(scorePlayerTwo)"
+        }
+    }
+    
     override func didMove(to view: SKView) {
         
         backgroundColor = UIColor(hue: 0.669, saturation: 0.99, brightness: 0.67, alpha: 1)
@@ -34,6 +48,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createPlayers()
         
         physicsWorld.contactDelegate = self
+        
+        createScore() // Вызываем перед использованием gameScore
+        
+        //gameScore.position = CGPoint(x: self.size.width * 0.02, y: self.size.height * 0.02) // Размеры сцены
     }
     
     func createBuildings() {
@@ -220,5 +238,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             banana = nil
             changePlayer()
         }
+    }
+    
+    func createScore() {
+        gameScorePlayerOne = SKLabelNode(fontNamed: "Chalkduster")
+        gameScorePlayerOne.horizontalAlignmentMode = .left
+        gameScorePlayerOne.zPosition = 100 // Установите zPosition выше других элементов
+        gameScorePlayerOne.fontSize = 24
+        addChild(gameScorePlayerOne)
+        
+        gameScorePlayerOne.position = CGPoint(x: 8, y: self.size.height - 84)
+        scorePlayerOne = 0
+        
+        gameScorePlayerTwo = SKLabelNode(fontNamed: "Chalkduster")
+        gameScorePlayerTwo.horizontalAlignmentMode = .right
+        gameScorePlayerTwo.zPosition = 100 // Установите zPosition выше других элементов
+        gameScorePlayerTwo.fontSize = 24
+        addChild(gameScorePlayerTwo)
+        
+        gameScorePlayerTwo.position = CGPoint(x: self.size.width - 8, y: self.size.height - 84)
+        scorePlayerTwo = 0
     }
 }
