@@ -182,6 +182,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scorePlayerTwo += 1
             destroy(player: player1)
             if scorePlayerTwo > 2 {
+                showAlert(player: "Player 2")
                 newGame(player: player1)
             }
         }
@@ -190,6 +191,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scorePlayerOne += 1
             destroy(player: player2)
             if scorePlayerOne > 2 {
+                showAlert(player: "Player 1")
                 newGame(player: player2)
             }
         }
@@ -292,4 +294,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameScorePlayerTwo.position = CGPoint(x: self.size.width - 8, y: self.size.height - 100)
         scorePlayerTwo = 0
     }
+    
+    func showAlert(player: String) {
+        // Создаем лейбл для текста
+        let alertLabel = SKLabelNode(fontNamed: "Chalkduster")
+        alertLabel.text = "\(player) win!"
+        alertLabel.fontSize = 48
+        alertLabel.fontColor = .yellow
+        alertLabel.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        alertLabel.alpha = 0  // Начальная прозрачность 0, чтобы скрыть лейбл
+        addChild(alertLabel)
+        
+        // Анимация появления (увеличение прозрачности)
+        let fadeIn = SKAction.fadeIn(withDuration: 0.5)
+        let wait = SKAction.wait(forDuration: 3)  // Ждем 3 секунды
+        let fadeOut = SKAction.fadeOut(withDuration: 0.5)  // Анимация исчезновения
+        
+        // Выполнение анимаций
+        let sequence = SKAction.sequence([fadeIn, wait, fadeOut])
+        alertLabel.run(sequence) {
+            alertLabel.removeFromParent()  // Удаляем лейбл после анимации
+        }
+    }
+
 }
