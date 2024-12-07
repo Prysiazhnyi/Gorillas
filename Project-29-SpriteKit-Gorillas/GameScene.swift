@@ -247,7 +247,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameScorePlayerOne.fontSize = 24
         addChild(gameScorePlayerOne)
         
-        gameScorePlayerOne.position = CGPoint(x: 8, y: self.size.height - 84)
+        gameScorePlayerOne.position = CGPoint(x: 8, y: self.size.height - 100)
         scorePlayerOne = 0
         
         gameScorePlayerTwo = SKLabelNode(fontNamed: "Chalkduster")
@@ -256,7 +256,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameScorePlayerTwo.fontSize = 24
         addChild(gameScorePlayerTwo)
         
-        gameScorePlayerTwo.position = CGPoint(x: self.size.width - 8, y: self.size.height - 84)
+        gameScorePlayerTwo.position = CGPoint(x: self.size.width - 8, y: self.size.height - 100)
         scorePlayerTwo = 0
     }
 }
