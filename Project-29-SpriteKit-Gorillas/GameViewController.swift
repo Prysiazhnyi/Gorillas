@@ -45,8 +45,15 @@ class GameViewController: UIViewController {
         
         angleChanged(self)
         velocityChanged(self)
+        
+        // Передаем ссылки на элементы UI в GameScene
+        currentGame.angleSlider = angleSlider
+        currentGame.velocitySlider = velocitySlider
+        currentGame.angleLabel = angleLabel
+        currentGame.velocityLabel = velocityLabel
+        
     }
-
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown
@@ -54,31 +61,29 @@ class GameViewController: UIViewController {
             return .all
         }
     }
-
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
     
     @IBAction func angleChanged(_ sender: Any) {
         angleLabel.text = "Angle: \(Int(angleSlider.value))°"
-        print("Tap slider angleChanged")
     }
     
     @IBAction func velocityChanged(_ sender: Any) {
         velocityLabel.text = "Velocity: \(Int(velocitySlider.value))"
-        print("Tap slider velocityChanged")
     }
     
     @IBAction func launch(_ sender: Any) {
         angleSlider.isHidden = true
-           angleLabel.isHidden = true
-
-           velocitySlider.isHidden = true
-           velocityLabel.isHidden = true
-
-           launchButton.isHidden = true
-
-           currentGame.launch(angle: Int(angleSlider.value), velocity: Int(velocitySlider.value))
+        angleLabel.isHidden = true
+        
+        velocitySlider.isHidden = true
+        velocityLabel.isHidden = true
+        
+        launchButton.isHidden = true
+        
+        currentGame.launch(angle: Int(angleSlider.value), velocity: Int(velocitySlider.value))
     }
     
     func activatePlayer(number: Int) {
@@ -87,13 +92,13 @@ class GameViewController: UIViewController {
         } else {
             playerNumber.text = "PLAYER TWO >>>"
         }
-
+        
         angleSlider.isHidden = false
         angleLabel.isHidden = false
-
+        
         velocitySlider.isHidden = false
         velocityLabel.isHidden = false
-
+        
         launchButton.isHidden = false
     }
     
