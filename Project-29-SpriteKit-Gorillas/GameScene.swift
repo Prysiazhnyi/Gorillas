@@ -237,8 +237,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func changePlayer() {
         
-        print("changePlayer \(currentPlayer)")
-        
         if currentPlayer == 1 {
             currentPlayer = 2
         } else {
